@@ -1,0 +1,25 @@
+- name: apache2 installation
+  apt:
+    name: apache2
+    state: present
+    update_cache: true
+- name: update ports.conf
+  template:
+    src: ports.conf
+    dest: /etc/apache2/ports.conf
+  notify: restart
+- name: update apache2.conf
+  template:
+    src: apache2.conf
+    dest: /etc/apache2/sites-enabled/000-default.conf
+  notify: restart
+- name: update html file on 18
+  template:
+    src: red.html
+    dest: /var/www/html/index.html
+  when:  ansible_distribution_major_version == "18"
+- name: update html on else
+  template:
+    src: green.html
+    dest: /var/www/html/index.html
+  when: ansible_distribution_major_version != "18"
