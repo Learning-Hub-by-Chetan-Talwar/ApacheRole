@@ -1,7 +1,8 @@
 <body bgcolor="red">
     <h1>
-      Hello All, <br>
-      This system is owned by _______. <br>
-      The hostname of this machine is ______ and the IP is ______.<br>
-      This Apache is running on ___ version of Ubuntu.
+        Hello All, <br>
+        This system is owned by {{ user_name }}. <br>
+        The hostname of this machine is {{ ansible_hostname }} and the IP is {{ ansible_all_ipv4_addresses[0] }}.<br>
+        This Apache is running on {{ ansible_distribution_major_version }} version of Ubuntu.
     <h1>
+</body>
